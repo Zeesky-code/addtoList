@@ -27,7 +27,7 @@
                         <div class="bar"></div>
                     </div>
                     <ul>
-                        <li><a href="#hero" data-after="Home">Home</a></li>
+                        <li><a href="{%url 'index'%}" data-after="Home">Home</a></li>
                         <li><a href="#about" data-after="About">About</a></li>
                         <li><a href="#contact" data-after="Contact">Contact</a></li>
                     </ul>
@@ -43,7 +43,7 @@
         <div class="hero container">
             <div>
                 <h1>Welcome<span></span></h1>
-                <a href="#projects" type="button" class="cta">Sign Up</a>
+                <a href="{% url 'signup' %}" type="button" class="cta">Sign Up</a>
             </div>
         </div>
     </section>

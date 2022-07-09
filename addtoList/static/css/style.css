@@ -118,6 +118,7 @@ p {
 	letter-spacing: 0.2rem;
 	text-decoration: none;
 	color: white;
+    background-color: #27461c;
 	text-transform: uppercase;
 	padding: 20px;
 	display: block;
@@ -128,7 +129,7 @@ p {
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%) scale(0);
-	color: rgba(240, 248, 255, 0.021);
+	color: #27461c;
 	font-size: 13rem;
 	letter-spacing: 50px;
 	z-index: -1;
@@ -536,7 +537,7 @@ p {
 		display: block;
 		height: auto;
 		width: fit-content;
-		background-color: transparent;
+		background-color: #27461c;
 	}
 	#header .nav-list ul li {
 		display: inline-block;
