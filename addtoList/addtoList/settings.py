@@ -12,9 +12,9 @@ STATIC_DIR=os.path.join(BASE_DIR,'static')
 SECRET_KEY = 'django-insecure-8lph*&hs8wr_+m8fo!qmh$li@%&2uan)l^nlitx6jw3-3d_x8r'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -37,6 +37,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'addtoList.urls'
