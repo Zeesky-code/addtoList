@@ -1,3 +1,4 @@
+//home page
 const hamburger = document.querySelector(
 	".header .nav-bar .nav-list .hamburger"
 );

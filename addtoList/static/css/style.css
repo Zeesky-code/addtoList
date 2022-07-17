@@ -1,5 +1,8 @@
 @import 'https://fonts.googleapis.com/css?family=Montserrat:300, 400, 700&display=swap';
 
+:root{
+    --main: #27461c;
+}
 * {
     padding: 0;
     margin: 0;
@@ -50,15 +53,15 @@ p {
 }
 
 .section-title span {
-    color: #27461c;
+    color: var(--main);
 }
 
 .cta {
     display: inline-block;
     padding: 10px 30px;
-    color: #27461c;
+    color: var(--main);
     background-color: transparent;
-    border: 2px solid #27461c;
+    border: 2px solid var(--main);
     font-size: 2rem;
     text-transform: uppercase;
     letter-spacing: 0.1rem;
@@ -69,7 +72,7 @@ p {
 
 .cta:hover {
     color: white;
-    background-color: #27461c;
+    background-color: var(--main);
 }
 
 .brand h1 {
@@ -91,7 +94,7 @@ p {
 
 #header .header {
     min-height: 8vh;
-    background-color: #27461c;
+    background-color: var(--main);
     color: white;
     transition: 0.3s ease background-color;
 }
@@ -109,7 +112,7 @@ p {
 #header .nav-list ul {
     list-style: none;
     position: absolute;
-    background-color: #27461c;
+    background-color: var(--main);
     width: 100vw;
     height: 100vh;
     left: 100%;
@@ -133,7 +136,7 @@ p {
     letter-spacing: 0.2rem;
     text-decoration: none;
     color: white;
-    background-color: #27461c;
+    background-color: var(--main);
     text-transform: uppercase;
     padding: 20px;
     display: block;
@@ -145,7 +148,7 @@ p {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) scale(0);
-    color: #27461c;
+    color: var(--main);
     font-size: 13rem;
     letter-spacing: 50px;
     z-index: -1;
@@ -158,7 +161,7 @@ p {
 }
 
 #header .nav-list ul li:hover a {
-    color: #27461c;
+    color: var(--main);
 }
 
 #header .hamburger {
@@ -281,7 +284,7 @@ p {
     left: 0;
     height: 100%;
     width: 0;
-    background-color: #27461c;
+    background-color: var(--main);
     animation: text_reveal_box 1s ease;
     animation-delay: 0.5s;
 }
@@ -344,7 +347,7 @@ p {
     top: 19px;
     height: 98%;
     width: 98%;
-    border: 7px solid #27461c;
+    border: 7px solid var(--main);
     z-index: -1;
 }
 
@@ -400,7 +403,7 @@ p {
 
 /* Footer */
 .footer {
-    background-color: #27461c;
+    background-color: var(--main);
     bottom: 0;
     width: 100%;
     position: fixed;
@@ -429,10 +432,125 @@ p {
 
 .footer p {
     color: white;
-    font-size: 1.3rem;
+    font-size: 1rem;
 }
 
 /* End Footer */
+/* Forms */
+.signupFrm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+form {
+    background: rgba(var(--main) 0.9);
+    padding: 40px;
+    max-width: 600px;
+    margin: 40px auto;
+    border-radius: 4px;
+    box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);
+}
+
+.title{
+    text-align: center;
+    color: var(--main);
+    font-weight: 300;
+    margin: 0 0 40px;
+    font-size: 2rem;
+}
+
+label {
+    position: absolute;
+    transform: translateY(-16px);
+    color: rgba(var(--main), 0.5);
+    backface-visibility: hidden;
+    pointer-events: none;
+    left: 2px;
+    font-size: 14px;
+}
+
+label .req {
+    margin: 2px;
+    color: #1ab188;
+}
+
+
+input,
+textarea {
+    font-size: 22px;
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 5px 10px;
+    background: none;
+    background-image: none;
+    border: 1px solid #a0b3b0;
+    color: var(--main);
+    border-radius: 0;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+input:focus,
+textarea:focus {
+    outline: 0;
+    border-color: var(--main);
+}
+
+textarea {
+    border: 2px solid #a0b3b0;
+    resize: vertical;
+}
+
+.field-wrap {
+    position: relative;
+    margin-bottom: 40px;
+}
+
+.top-row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.top-row>div {
+    float: left;
+    width: 48%;
+    margin-right: 4%;
+}
+
+.top-row>div:last-child {
+    margin: 0;
+}
+
+.button {
+    border: 0;
+    outline: none;
+    border-radius: 0;
+    padding: 15px 0;
+    font-size: 2rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    background: var(--main);
+    color: #ffffff;
+    transition: all 0.3s ease;
+    -webkit-appearance: none;
+    cursor: pointer;
+}
+
+.button:hover,
+.button:focus {
+    background: #ffffff;
+    color: var(--main);
+}
+
+.button-block {
+    display: block;
+    width: 100%;
+}
+
+
 
 /* Keyframes */
 @keyframes hamburger_puls {
@@ -461,7 +579,7 @@ p {
 
 @keyframes text_reveal {
     100% {
-        color: #27461c;
+        color: var(--main);
     }
 }
 
@@ -543,7 +661,7 @@ p {
         top: 34px;
         height: 98%;
         width: 98%;
-        border: 10px solid #27461c;
+        border: 10px solid var(--main);
     }
 
     #about .col-right {
@@ -613,7 +731,7 @@ p {
         display: block;
         height: auto;
         width: fit-content;
-        background-color: #27461c;
+        background-color: var(--main);
     }
 
     #header .nav-list ul li {

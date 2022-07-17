@@ -1,7 +1,38 @@
 {% extends 'index.html' %}
-{% block title %}Sign Up{% endblock %}
+{% load static %}
+{% block title %}My Second Form Page{%endblock %}
+
 {% block content %}
-<div class="container">
-    Test
+<div class="container signupForm">
+
+    <form method="POST" action="">
+        {% csrf_token %}
+        <h1 class="title">Sign Up</h1>
+        <div class="top-row">
+            <div class="field-wrap">
+                <label>
+                    {{form.first_name.label}}<span class="req">*</span>
+                </label>
+                {{form.first_name}}
+            </div>
+
+            <div class="field-wrap">
+                <label>{{form.last_name.label}}<span class="req">*</span></label>
+                {{form.last_name}}
+            </div>
+        </div>
+
+        <div class="field-wrap">
+            <label>{{form.username.label}}<span class="req">*</span></label>
+            {{form.username}}
+        </div>
+
+        <div class="field-wrap">
+            <label>{{form.password1.label}}<span class="req">*</span></label>
+            {{form.password1}}
+        </div>
+
+        <button type="submit" class="button button-block">Get Started</button>
+    </form>
 </div>
 {% endblock content %}
