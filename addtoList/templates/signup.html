@@ -1,13 +1,17 @@
 {% extends 'index.html' %}
 {% load static %}
-{% block title %}My Second Form Page{%endblock %}
+{% block title %}Sign Up{%endblock %}
 
 {% block content %}
-<div class="container signupForm">
+<div class="container Form">
 
     <form method="POST" action="">
         {% csrf_token %}
-        <h1 class="title">Sign Up</h1>
+        <h1 class="title">
+            Sign Up
+            <p>Already have an account? <a href="{% url 'login' %}">Login</a></p>
+            {{form.errors}}
+        </h1>
         <div class="top-row">
             <div class="field-wrap">
                 <label>
@@ -31,8 +35,13 @@
             <label>{{form.password1.label}}<span class="req">*</span></label>
             {{form.password1}}
         </div>
+        <div class="field-wrap">
+            <label>{{form.password2.label}}<span class="req">*</span></label>
+            {{form.password2}}
+        </div>
 
         <button type="submit" class="button button-block">Get Started</button>
+        
     </form>
 </div>
 {% endblock content %}
