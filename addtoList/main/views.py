@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import UserCreationForm
 from .forms import signupForm, loginForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
@@ -27,22 +26,18 @@ def signup(request):
 def loginPage(request):
     if request.method == 'POST':
         form = loginForm()
-        if form.is_valid():
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username = username, password = password )
 
-            username = request.POST.get('username')
-            password = request.POST.get('password')
-
-            user = authenticate(request, username = username, password = password )
-
-            if user is not None:
-                login(request, user)
-                messages.info(request, f"You are now logged in as {username}.")
-                return redirect('home')
-            else:
-                messages.error(request, "Invalid Username or Password")
-		
+        if user is not None:
+            login(request, user)
+            messages.info(request, f"You are now logged in as {username}.")
+            return redirect('home')
         else:
             messages.error(request, "Invalid Username or Password")
+		
+
 
     form = loginForm()
     context = {'form': form}
@@ -52,5 +47,9 @@ def loginPage(request):
 def home(request):
     return render (request, 'dashboard.html')
 
+
+def logout_view(request):
+    logout(request)
+    return redirect ('index')
 def error_404_view(request, exception):
     return render(request, '404.html', status=404)
