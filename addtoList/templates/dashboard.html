@@ -10,7 +10,43 @@
     <title>Add To List</title>
 </head>
 <body>
-    Welcome {{user.first_name}} {{user.last_name}}
-    <a href="{% url 'logout_view' %}"><button type="submit" class="button button-block" >Log Out</button><div class="field-wrap"></div></a>
+    <nav>
+        <h1>{{user.username}}</h1>
+        <a href="">Settings</a>
+        <a href="{% url 'logout_view' %}"><button type="submit" class="button button-block" >Log Out</button><div class="field-wrap"></div></a>
+    </nav>
+    <main>
+        <div class="search">
+            <input type="text">
+            <button type="submit">Search</button>
+        </div>
+        <form action="{% url 'home' %}" method="post" class="create-grocery">
+            {% csrf_token %}
+
+            <input type="text" name="new-grocery" id="new-grocery" required>
+            <button type="submit">Add Grocery</button>
+        </form>
+        <div class="display">
+            <table>
+                <thead>
+                    <th>Grocery</th>
+                    <th>Category</th>
+                    <th></th>
+                </thead>
+                <tbody>
+                    {% for grocery in groceries %}
+                    <tr><th>{{grocery.name}}</th></tr>
+                    {% endfor %}
+                </tbody>
+                
+            </table>
+            
+            
+            <i class="fa-solid fa-pen-to-square"></i>
+            
+        </div>
+        
+
+    </main>
 </body>
 </html>

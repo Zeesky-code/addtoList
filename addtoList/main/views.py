@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .forms import signupForm, loginForm
+from .models import Grocery
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -46,11 +47,22 @@ def loginPage(request):
 
 @login_required
 def home(request):
-    return render (request, 'dashboard.html')
+    model = Grocery
+    if request.method == 'POST':
+        # "new-todo" is the name of the input in crud.html file
+        grocery_name = request.POST.get("new-grocery")
+        grocery = Grocery.objects.create(name=grocery_name, user=request.user)
+        return redirect("home")
+
+    groceries = Grocery.objects.filter(user = request.user, bought = False)
+
+    context = {"groceries":groceries}
+    return render (request, 'dashboard.html', context)
 
 
 def logout_view(request):
     logout(request)
     return redirect ('index')
+
 def error_404_view(request, exception):
     return render(request, '404.html', status=404)

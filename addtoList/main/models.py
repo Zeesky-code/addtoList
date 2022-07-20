@@ -11,6 +11,8 @@ class Grocery(models.Model):
     bought = models.BooleanField(default=False)
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
                              on_delete=models.CASCADE, related_name="Grocery")
+    quantity = models.IntegerField()
+    price =  models.IntegerField()
 
     class Meta:
         #Meta Information
@@ -19,6 +21,3 @@ class Grocery(models.Model):
     def __str__(self):
         return self.name
 
-class GroceryItem(models.Model):
-    quantity = models.IntegerField()
-    price =  models.IntegerField()
