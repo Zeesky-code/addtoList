@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,8 +10,58 @@
     <script src="https://kit.fontawesome.com/fd2b0feaf2.js" crossorigin="anonymous"></script>
     <title>Add To List</title>
 </head>
+
 <body>
-    Welcome {{user.first_name}} {{user.last_name}}
-    <a href="{% url 'logout_view' %}"><button type="submit" class="button button-block" >Log Out</button><div class="field-wrap"></div></a>
+    <nav>
+        <h1>{{user.username}}</h1>
+        <a href="">Settings</a>
+        <a href="{% url 'logout_view' %}"><button type="submit" class="button button-block">Log Out</button>
+            <div class="field-wrap"></div>
+        </a>
+    </nav>
+    <main>
+        <div class="search">
+            <div>
+                <h1>Groceries</h1>
+                <p>All your groceries are stored here. You will find created ones and you can create new ones.</p>
+            </div>
+            <form action="{% url 'home' %}" method="post" class="create-grocery">
+                {% csrf_token %}
+
+                <input type="text" name="new-grocery" id="new-grocery" required>
+                <button type="submit">Add Grocery</button>
+            </form>
+        </div>
+        <div class="display">
+            <table>
+                <thead>
+                    <th>Grocery</th>
+                    <th>Category</th>
+                    <th>Date Created</th>
+                    <th>Status</th>
+                </thead>
+                <tbody>
+                    {% for grocery in groceries %}
+                    <tr>
+                        <td>{{grocery.name}}<i class="fa-solid fa-pen-to-square"></i></td>
+                        <td>{{grocery.category}}</td>
+                        <td></td>
+                        <td>
+                            {% if grocery.bought %}
+                                <i class="fa-solid fa-circle-check"></i>
+                            {% else %}
+                                <i class="fa-solid fa-circle-xmark"></i>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+
+            </table>
+        </div>
+
+
+    </main>
 </body>
+
 </html>
