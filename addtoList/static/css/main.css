@@ -11,33 +11,43 @@ body{
     display: grid;
     grid-template-columns: 100px 1fr;
     height: 100vh;
-    background-color: #fefefe;
 }
 nav{
     border-right: 2px #fefefec4;
 }
 
-h1{
-    text-transform: capitalize;
-    padding: 2rem;
+main{
+    display: grid;
+    grid-template-rows: 1fr 3fr;
+    width: 100vw;
 }
-
-
-
-
 .search{
-    display: flex;
-    align-content: center;
-    justify-content: center;
-}
-.search input{
-    border-radius: 15px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
 .display{
     display: flex;
 }
-.item{
-    display: flex;
-    width: max-content;
+table {
+    text-align: left;
+    position: relative;
+    border-collapse: collapse; 
+    width: 90vw;
 }
+/* Spacing */
+  td, th {
+    padding: 20px;
+  }
+  th {
+    padding: 10px;
+  }
+
+  tbody > tr:hover {
+    background: #c9c9c9;
+    border-top: #27461c;
+  }
+i{
+  color: var(--main);
+}
+
 

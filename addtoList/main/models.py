@@ -11,8 +11,29 @@ class Grocery(models.Model):
     bought = models.BooleanField(default=False)
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
                              on_delete=models.CASCADE, related_name="Grocery")
-    quantity = models.IntegerField()
-    price =  models.IntegerField()
+    quantity = models.IntegerField(default = 1)
+    price =  models.IntegerField(default = 1)
+    class Category_choices(models.TextChoices):
+        Fruits = '🍓Fruits',
+        Vegetables = '🥒Vegetables',
+        Canned_Goods = '🥫Canned Goods',
+        Dairy = '🥛Dairy',
+        Meat = '🥩Meat',
+        Seafood = '🐟Fish & Seafood',
+        Condiments = '🧂Condiments and Spices',
+        Snacks = '🍟Snacks',
+        Baked_Goods = '🍞Baked Goods',
+        Beverages = '🧃Beverages',
+        Pasta_and_Rice = '🍝Pasta',
+        Baking_Products = '🥚Baking Products',
+        Frozen_Food = '🍗Frozen Food',
+        Baby_Items = '🚼Baby Items',
+        Pet_Care = '🐕Pet Care',
+        Miscellaneous = 'Miscellaneous'
+
+
+        
+    category = models.CharField(max_length = 200,choices = Category_choices.choices, default= "blank")
 
     class Meta:
         #Meta Information

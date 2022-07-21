@@ -4,6 +4,7 @@ from .models import Grocery
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 
 
 # Create your views here.
@@ -56,7 +57,17 @@ def home(request):
 
     groceries = Grocery.objects.filter(user = request.user, bought = False)
 
-    context = {"groceries":groceries}
+    # paginating 10 items per page
+    paginator = Paginator(groceries, 10)
+    
+    # It's URL param for getting the current page number
+    page_number = request.GET.get("page")
+    
+    # retrieving all the todo items for that page
+    page_obj = paginator.get_page(page_number)
+
+
+    context = {"groceries":groceries, "page_obj": page_obj}
     return render (request, 'dashboard.html', context)
 
 
