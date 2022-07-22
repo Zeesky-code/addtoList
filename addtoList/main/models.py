@@ -13,6 +13,7 @@ class Grocery(models.Model):
                              on_delete=models.CASCADE, related_name="Grocery")
     quantity = models.IntegerField(default = 1)
     price =  models.IntegerField(default = 1)
+    note = models.CharField(max_length= 500)
     class Category_choices(models.TextChoices):
         Fruits = '🍓Fruits',
         Vegetables = '🥒Vegetables',

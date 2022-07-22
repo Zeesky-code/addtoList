@@ -37,7 +37,8 @@
                 <thead>
                     <th>Grocery</th>
                     <th>Category</th>
-                    <th>Date Created</th>
+                    <th>Quantity</th>
+                    <th>Note</th>
                     <th>Status</th>
                 </thead>
                 <tbody>
@@ -45,7 +46,8 @@
                     <tr>
                         <td>{{grocery.name}}<i class="fa-solid fa-pen-to-square"></i></td>
                         <td>{{grocery.category}}</td>
-                        <td></td>
+                        <td>{{grocery.quantity}}</td>
+                        <td>{{grocery.note}}</td>
                         <td>
                             {% if grocery.bought %}
                                 <i class="fa-solid fa-circle-check"></i>
