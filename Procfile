@@ -1,1 +1,1 @@
-web: gunicorn addtoList.wsgi
+web: gunicorn addtoList.addtoList.wsgi
