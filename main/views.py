@@ -50,8 +50,12 @@ def loginPage(request):
 def home(request):
     model = Grocery
     if request.method == 'POST':
-        # "new-todo" is the name of the input in crud.html file
-        grocery_name = request.POST.get("new-grocery")
+        # "new-grocery" is the name of the input in crud.html file
+        if request.POST.get("new-grocery") != None:
+            grocery_name = request.POST.get("new-grocery")
+        else:
+            messages.error(request, " Oops! Please, enter a grocery item")
+        
         grocery = Grocery.objects.create(name=grocery_name, user=request.user)
         return redirect("home")
 
@@ -68,7 +72,43 @@ def home(request):
 
 
     context = {"groceries":groceries, "page_obj": page_obj}
-    return render (request, 'dashboard.html', context)
+    return render (request, 'main.html', context)
+
+def update_grocery(request, pk):
+    """
+    Update todo item
+    Args:
+        pk (Integer): Todo ID - primary key
+    """
+    # NOTE: below get_object_or_404() returns a data if exists else status 404 not found
+    grocery = get_object_or_404(TodoItem, id=pk, user=request.user)
+
+    # NOTE: request.POST.get("todo_{pk}") is the input name of the todo modal
+    grocery.name = request.POST.get(f"todo_{pk}")
+    grocery.save()
+    # return redirect("home")
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+def delete_grocery(request, pk):
+    """
+    Delete todo item
+    Args:
+        pk (Integer): Todo ID - Primary key
+    """    
+    grocery = get_object_or_404(TodoItem, id=pk, user=request.user)
+    grocery.delete()
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+def buy_grocery(request, pk):
+    """
+    Updating todo as completed item
+    Args:
+        pk (Integer): Todo ID - primary key
+    """    
+    grocery = get_object_or_404(TodoItem, id=pk, user=request.user)
+    grocery.bought = True
+    grocery.save()
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
 def logout_view(request):

@@ -1,56 +1,183 @@
-@import url('https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Foundation&display=swap');
-
+@import 'https://fonts.googleapis.com/css?family=Nunito:400,700'; 
 :root{
-    --main: #27461c;
+  --main: #27461c;
 }
-
-*{
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'Edu NSW ACT Foundation', cursive;
-}
-body{
-    display: grid;
-    grid-template-columns: 100px 1fr;
-    height: 100vh;
-}
-nav{
-    border-right: 2px #fefefec4;
-}
-
-main{
-    display: grid;
-    grid-template-rows: 1fr 3fr;
-    width: 100vw;
-}
-.search{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-}
-.display{
-    display: flex;
-}
-table {
-    text-align: left;
-    position: relative;
-    border-collapse: collapse; 
-    width: 90vw;
-}
-/* Spacing */
-  td, th {
-    padding: 20px;
-  }
-  th {
-    padding: 10px;
-  }
-
-  tbody > tr:hover {
-    background: #c9c9c9;
-    border-top: #27461c;
-  }
-i{
+body {
+  font: 14px 'Nunito', sans-serif;
+  display: grid;
+  grid-template-columns: 1fr 9fr;
+  margin: 0;
+  height: 100vh;
+  background: #F4FDD9;
   color: var(--main);
+}
+.nav__cont {
+  position: fixed;
+  width: 60px;
+  top: 0;
+  height: 100vh;
+  z-index: 100;
+  background-color: var(--main);
+  overflow: hidden;
+  transition: width 0.3s ease;
+  cursor: pointer;
+  box-shadow: 4px 7px 10px rgba(0, 0, 0, 0.4);
+}
+
+.nav__cont:hover {
+  width: 200px;
+}
+
+.nav {
+  list-style-type: none;
+  color: white;
+}
+.nav:first-child {
+  padding-top: 1.5rem;
+}
+
+.nav__items {
+  padding-bottom: 3rem;
+  font-family: 'roboto';
+}
+
+.nav__items a {
+  position: relative;
+  display: block;
+  top: -35px;
+  padding-left: 25px;
+  padding-right: 15px;
+  transition: all 0.3s ease;
+  margin-left: 25px;
+  margin-right: 10px;
+  text-decoration: none;
+  color: white;
+  font-family: 'roboto';
+  font-weight: 100;
+  font-size: 1.35em;
+}
+
+.nav__items a:after {
+  content: '';
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 2px;
+  background: radial-gradient(circle at 94.02% 88.03%, #fcfcfc, transparent 100%);
+  opacity: 0;
+  transition: all 0.5s ease;
+  z-index: -10;
+}
+
+.nav__items:hover a:after {
+  opacity: 1;
+}
+
+.nav__items i {
+  font-size: 2rem;
+  position: relative;
+  left: -25px;
+  cursor: pointer;
+}
+
+main {
+  display: grid;
+  grid-template-rows: 1fr 9fr;
+  width: 85vw;
+  margin-left: 15vw;
+  height:100vh;
+}
+.username{
+  text-align: right;
+  text-transform: capitalize;
+}
+
+.wrapper{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+}
+.today{
+  font-size: 2.5rem;
+}
+
+
+.grocery-list {
+  margin: 20px 0;
+}
+ul{
+  list-style-type: none;
+}
+.grocery-list li {
+  background: #fff;
+  border-radius: 5px;
+  margin-bottom: 7px;
+  position: relative;
+  word-break: break-word;
+}
+
+.grocery-list li .checkbox {
+  margin: 0;
+  padding: 10px 15px;
+  border-radius: 5px;
+}
+.grocery-list li label {
+  display: block;
+  padding-right: 10px;
+}
+.grocery-list li label input[type="checkbox"] {
+  visibility: hidden;
+}
+.grocery-list li label .checkbox-mask {
+  display: block;
+  border: 2px solid #666;
+  width: 12px;
+  height: 12px;
+  border-radius: 2.5px;
+  position: absolute;
+  margin-left: -20px;
+  margin-top: 4px;
+}
+.grocery-list li .close {
+  display: none;
+  position: absolute;
+  width: 12px;
+  height: 16px;
+  top: 50%;
+  margin-top: -8px;
+  right: 10px;
+  font-size: 16px;
+}
+.grocery-list li .close .fa {
+  line-height: 16px;
+}
+.grocery-list li:hover .close {
+  display: block;
+}
+.has-feedback .fa {
+  line-height: 35px;
+  cursor: pointer;
+  pointer-events: auto;
+  z-index: 10;
+  display: block;
+  color: #666;
+  -webkit-transition: color 0.15s linear;
+  transition: color 0.15s linear;
+}
+.has-feedback .fa:hover {
+  color: #999;
+}
+@media screen and (min-width: 600px) {
+  .nav__items i {
+    width: 32px;
+    height: 32px;
+    left: -15px;
+  }
+  .nav__cont {
+      width: 80px;
+  }
 }
 
 
