@@ -33,18 +33,12 @@ def loginPage(request):
         form = loginForm()
         username = request.POST['username']
         password = request.POST['password']
-        print(username )
-        print(password)
         user = authenticate(request, username = username, password = password )
-        print(user)
         if user is not None:
             login(request, user)
-            messages.info(request, f"You are now logged in as {username}.")
             return redirect('home')
         else:
             messages.error(request, "Invalid Username or Password")
-		
-
 
     form = loginForm()
     context = {'form': form}
