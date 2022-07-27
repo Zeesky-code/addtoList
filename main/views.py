@@ -3,7 +3,9 @@ from .forms import signupForm, loginForm
 from .models import Grocery
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf  import csrf_protect
 from django.core.paginator import Paginator
 
 
@@ -31,8 +33,10 @@ def loginPage(request):
         form = loginForm()
         username = request.POST['username']
         password = request.POST['password']
+        print(username )
+        print(password)
         user = authenticate(request, username = username, password = password )
-
+        print(user)
         if user is not None:
             login(request, user)
             messages.info(request, f"You are now logged in as {username}.")

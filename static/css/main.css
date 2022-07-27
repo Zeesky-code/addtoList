@@ -85,8 +85,8 @@ body {
 main {
   display: grid;
   grid-template-rows: 1fr 9fr;
-  width: 85vw;
-  margin-left: 15vw;
+  width: 80vw;
+  margin-left: 20vw;
   height:100vh;
 }
 .username{
@@ -103,12 +103,14 @@ main {
   font-size: 2.5rem;
 }
 
-
 .grocery-list {
   margin: 20px 0;
 }
-ul{
+.wrapper ul{
   list-style-type: none;
+  padding: 0;
+  margin: 0;
+  width: 50%;
 }
 .grocery-list li {
   background: #fff;
@@ -169,6 +171,74 @@ ul{
 .has-feedback .fa:hover {
   color: #999;
 }
+
+/* user profile settigns */
+form{
+  width:70%;
+  display: flex;
+  flex-direction: column;
+  padding-left: 2rem;
+}
+
+form *{
+  font-weight: bold;
+}
+.form-group{
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 2rem;
+}
+form label{
+  font-size: 1rem;
+  color:#8f9096;
+}
+.form-group input{
+  width:100%;
+  height: 50px;
+  background-color: transparent;
+  border-bottom: 1px solid var(--main);
+
+}
+.form-group input:hover, input:focus , input:-internal-autofill-selected{
+  background-color: transparent;
+  border-bottom: 1px solid var(--main);
+
+}
+form .form-control,form .form-control:focus{
+  border-color:transparent;
+  border-bottom-color: #bebcc1;
+  box-shadow:none;
+}
+
+.buttons{
+  margin-top: 10vh ;
+  display: flex;
+  justify-content: center;
+  height: 3rem;
+}
+.col{
+  width: 50%;
+  display: flex;
+  justify-content: center;
+}
+form .btn{ 
+  border-radius: 0px;
+  border-color: transparent;
+  width: 25vw;
+}
+
+.btn.btn-default{
+  background: #ebebeb;
+  color:#8f9096;
+  margin-right: 10px;
+}
+
+.btn.btn-primary{
+  background: var(--main);
+  color:white;
+}
+
+
 @media screen and (min-width: 600px) {
   .nav__items i {
     width: 32px;
