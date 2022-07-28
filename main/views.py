@@ -72,17 +72,17 @@ def home(request):
     context = {"groceries":groceries, "page_obj": page_obj}
     return render (request, 'main.html', context)
 
-def update_grocery(request, pk):
+def update_grocery(request):
     """
     Update todo item
     Args:
         pk (Integer): Todo ID - primary key
     """
     # NOTE: below get_object_or_404() returns a data if exists else status 404 not found
-    grocery = get_object_or_404(TodoItem, id=pk, user=request.user)
+    grocery = get_object_or_404(TodoItem, name=name, user=request.user)
 
     # NOTE: request.POST.get("todo_{pk}") is the input name of the todo modal
-    grocery.name = request.POST.get(f"todo_{pk}")
+    grocery.name = request.POST.get(f"grocery_{name}")
     grocery.save()
     # return redirect("home")
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))

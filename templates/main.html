@@ -3,12 +3,7 @@
 {% load static %}
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add to List</title>
-    <link href="{% static 'css/main.css' %}" rel="stylesheet" type="text/css" />
-    <script src="https://kit.fontawesome.com/fd2b0feaf2.js" crossorigin="anonymous"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-57635392-5"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
@@ -16,57 +11,116 @@
 
         gtag('config', 'UA-57635392-5');
     </script>
+    <title>Todost ✍️</title>
+    <meta name="viewport" content="height=device-height, initial-scale=1, user-scalable=no">
+    <meta name="description"
+        content="Todost - Beautiful Todo list to uses 🍪 to track your tasks ! Made with ❤️ by Quentin Colus" />
+    <link rel="shortcut icon" href="todost.png">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:400,700" rel="stylesheet">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
+    <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.4.0/animate.min.css'>
+    <script src="https://kit.fontawesome.com/fd2b0feaf2.js" crossorigin="anonymous"></script>
+    <link href="{% static 'css/main.css' %}" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
-    <nav class="nav__cont">
-        <ul class="nav">
-            <li class="nav__items ">
-                <i class="fa-solid fa-house-user"></i>
-                <a href="{% url 'home'%}">Dashboard</a>
-            </li>
+    <div class="logo">
+        <i class="fa-solid fa-basket-shopping"></i>
+    </div>
 
-            <li class="nav__items " id="last">
-                <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                <a href="{% url 'logout_view'%}">Log Out</a>
-            </li>
-        </ul>
-    </nav>
-    {% block content %}
-    <main>
-        <div class="head">
-            <h1 class="username">{{user.username}}</h1>
-        </div>
-        
-        <div class="wrapper">
-            <div class="today"></div>
-            <div class="form-group has-feedback">
-                <input type="text" name="new-grocery" class="form-control" placeholder="✍️ Add Grocery..." />
-                <i class="fa fa-plus form-control-feedback add-btn" title="Add item"></i>
+    <body class="body">
+        <div class="container">
+            <div class="today">
             </div>
-            <ul class="grocery-list">
-                {% for grocery in groceries %}
-                <li class="grocery">
-                    <div class="checkbox">
-                        <span class="close">
-                            <i class="fa fa-times" aria-hidden="true"></i>
-                        </span>
-                        <label>
-                            <span class="checkbox-mask"></span>
-                            <input type="checkbox">{{grocery.name}}
-                        </label>
+            <div class="row">
+                <div class="col-md-4 col-md-offset-4 col-xs-6 col-xs-offset-3">
+                    <div class="add-control">
+                        <div class="form-group has-feedback">
+                            <input type="text" class="form-control" placeholder="✍️ Add Grocery..." />
+                            <i class="fa fa-plus form-control-feedback add-btn" title="Add Grocery"></i>
+                        </div>
                     </div>
-                </li>
-                {% endfor %}
-            </ul>
+                    <p class="err text-danger text-center hidden"><i class="fa fa-warning"></i> Oops! Please, enter name
+                        item</p>
+                    <p class="no-items text-muted text-center hidden"><i class="fa fa-ban"></i></p>
+                    <ul class="grocery-list">
+                        {% for grocery in groceries %}
+                        <li class="grocery">
+                            <div class="checkbox">
+                                <span class="functions">
+                                    <i class=" fa fa-solid fa-pen-to-square" data-toggle="modal"
+                                        data-target="#exampleModalCenter"></i>
+                                    <span class="close">
+                                        <i class="fa fa-times" aria-hidden="true"></i>
+                                    </span>
+                                </span>
+                                <label>
+                                    <span class="checkbox-mask"></span>
+                                    <input type="checkbox">{{grocery.name}}
+                                </label>
+                            </div>
+                            <!-- Button trigger modal -->
+
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
         </div>
 
 
-    </main>
-    {% endblock %}
-    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-    <script src='http://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script>
-    <script src="{% static 'js/index.js' %}"></script>
+        <!-- Edit Grocery Modal -->
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Edit Grocery</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{% url 'update_grocery'  %}" method="post" class="edit-grocery-form">
+                            {% csrf_token %}
+                            <div class="modal-body">
+                                <input type="text" name="grocery_{{ grocery }}" id="" value="{{ grocery.name }}" required
+                                    size="40">
+                            </div>
+                            <div class="modal-footerr">
+                                <button type="button" class="btn btn-sm btn-secondary"
+                                    data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-sm btn-primary"
+                                    id="edit-grocery-submit">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class"footer">
+            <h4>
+                {{user.username}}
+                <p></p>
+                <a href="{% url 'logout_view' %}">Log Out</a>
+            </h4>
+        </div>
+        </section>
+        </main>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+        <script src='http://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script>
+        <script src="{% static 'js/index.js' %}"></script>
+        <script src="https://unpkg.com/scrollreveal/dist/scrollreveal.min.js"></script>
+    </body>
 </body>
-
-</html>
