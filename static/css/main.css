@@ -396,3 +396,6 @@ a:hover {
 .grocery-list input[type="checkbox"] {
   opacity: 0;
 }
+.modal{
+  padding-top: 20vh;
+}

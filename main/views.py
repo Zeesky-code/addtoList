@@ -68,9 +68,11 @@ def home(request):
     
     # retrieving all the todo items for that page
     page_obj = paginator.get_page(page_number)
+   
+    #get Categories
+    categories = Grocery.Category_choices
 
-
-    context = {"groceries":groceries, "page_obj": page_obj}
+    context = {"groceries":groceries, "page_obj": page_obj, "categories": categories}
     return render (request, 'main.html', context)
 
 def update_grocery(request, pk):
@@ -78,17 +80,12 @@ def update_grocery(request, pk):
     # NOTE: below get_object_or_404() returns a data if exists else status 404 not found
     grocery = get_object_or_404(Grocery, id=pk, user=request.user)
 
-    # NOTE: request.POST.get("todo_{pk}") is the input name of the todo modal
+    # NOTE: request.POST.get("grocery_{pk}") is the input name of the grocery modal
     grocery.name = request.POST.get(f"grocery_{pk}")
     grocery.save()
 
-    #get Categories
-    categories = Category_choices.objects.all()
-    print(categories)
-    return {"categories": categories}
-    
     # return redirect("home")
-    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER') )
 
 def delete_grocery(request, pk):
     """

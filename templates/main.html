@@ -11,10 +11,9 @@
 
         gtag('config', 'UA-57635392-5');
     </script>
-    <title>Todost ✍️</title>
+    <title>Add to List</title>
     <meta name="viewport" content="height=device-height, initial-scale=1, user-scalable=no">
-    <meta name="description"
-        content="Todost - Beautiful Todo list to uses 🍪 to track your tasks ! Made with ❤️ by Quentin Colus" />
+    <meta name="description" content="Add to List - List to track your shopping list !" />
     <link rel="shortcut icon" href="todost.png">
     <link href="https://fonts.googleapis.com/css?family=Nunito:400,700" rel="stylesheet">
     <meta charset="UTF-8">
@@ -64,49 +63,59 @@
                                 </label>
                             </div>
                             <!-- Edit Grocery Modal -->
-                            <div class="modal fade" id="exampleModalCenter" tabindex="-1"
-                            role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLongTitle">Edit Grocery:
-                                            {{grocery.name}}</h5>
-                                        <button type="button" class="close" data-dismiss="modal"
-                                            aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form action="{% url 'update_grocery'  grocery.id %}" method="post"
-                                            class="edit-grocery-form">
-                                            {% csrf_token %}
-                                            <div class="modal-body">
-                                                <ul>
-                                                    <li>Name
-                                                        <input type="text" name="grocery_{{ grocery }}" id=""
-                                                            value="{{ grocery.name }}" required size="40">
-                                                        Category</li>
-                                                    <li><select>
-                                                        {% for category in categories%}
-                                                            {{category}}
-                                                        {% endfor %}
-                                                    </select></li>
-                                                </ul>
-                                                
-                                                
-                                                
-                                            </div>
-                                        </form>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                            data-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary"
-                                            id="edit-grocery-submit">Save changes</button>
+                            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLongTitle">Edit Grocery:
+                                                {{grocery.name}}</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="{% url 'update_grocery'  grocery.id %}" method="post"
+                                                class="edit-grocery-form">
+                                                {% csrf_token %}
+                                                <div class="modal-body">
+                                                    <ul>
+                                                        <li><label>Name</label>
+                                                            <input type="text" name="grocery_{{ grocery }}" id=""
+                                                                value="{{ grocery.name }}" required size="40">
+                                                        </li>
+                                                        <li><label>Category</label>
+                                                            <select>
+                                                                {% for category in categories%}
+                                                                <option>{{category}}</option>
+                                                                {% endfor %}
+                                                            </select>
+                                                        </li>
+                                                        <li>
+                                                            <label>Quantity</label>
+                                                            <input type="number">
+                                                        </li>
+                                                        <li>
+                                                            <label>Price</label>
+                                                            <input type="number">
+                                                        </li>
+                                                        <li>Notes:
+                                                            <input type="text" name="grocery_{{ grocery }}" id=""
+                                                                value="{{ grocery.note }}" required size="40">
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary" id="edit-grocery-submit">Save
+                                                changes</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
                         </li>
                         {% endfor %}
                     </ul>
