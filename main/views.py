@@ -49,14 +49,14 @@ def loginPage(request):
 def home(request):
     model = Grocery
     if request.method == 'POST':
-        # "new-grocery" is the name of the input in crud.html file
-        if request.POST.get("new-grocery") != None:
+        # "new-grocery" is the name of the input in the file
+        if request.POST.get("new-grocery"):
             grocery_name = request.POST.get("new-grocery")
+            grocery = Grocery.objects.create(name=grocery_name, user=request.user)
+            grocery.save()
+            return redirect("home")
         else:
-            messages.error(request, " Oops! Please, enter a grocery item")
-        
-        grocery = Grocery.objects.create(name=grocery_name, user=request.user)
-        return redirect("home")
+            formerror = "Oops, please enter a Grocery!!"
 
     groceries = Grocery.objects.filter(user = request.user, bought = False)
 

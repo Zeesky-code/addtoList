@@ -53,17 +53,6 @@ function getState() {
 }
 
 function addItem(text, status, id, noUpdate) {
-    var id = id ? id : generateID();
-    var c = status === "done" ? "danger" : "";
-    var item =
-        '<li data-id="' +
-        id +
-        '" class="animated flipInX ' +
-        c +
-        '"><div class="checkbox"><span class="close"><i class="fa fa-times"></i></span><label><span class="checkbox-mask"></span><input type="checkbox" />' +
-        text +
-        "</label></div></li>";
-
     var isError = $(".form-control").hasClass("hidden");
 
     if (text === "") {
