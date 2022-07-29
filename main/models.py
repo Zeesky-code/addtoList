@@ -40,6 +40,8 @@ class Grocery(models.Model):
         #Meta Information
         verbose_name = "Grocery"
         verbose_name_plural = "Groceries"
+        #Order in descending order based on date of creation
+        ordering = ['-created_on']
     def __str__(self):
         return self.name
 

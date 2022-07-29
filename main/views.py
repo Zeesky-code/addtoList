@@ -1,4 +1,5 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
+from django.http import HttpResponse, HttpResponseRedirect
 from .forms import signupForm, loginForm
 from .models import Grocery
 from django.contrib import messages
@@ -72,18 +73,20 @@ def home(request):
     context = {"groceries":groceries, "page_obj": page_obj}
     return render (request, 'main.html', context)
 
-def update_grocery(request):
-    """
-    Update todo item
-    Args:
-        pk (Integer): Todo ID - primary key
-    """
+def update_grocery(request, pk):
+    item = Grocery.objects.get(id=pk)
     # NOTE: below get_object_or_404() returns a data if exists else status 404 not found
-    grocery = get_object_or_404(TodoItem, name=name, user=request.user)
+    grocery = get_object_or_404(Grocery, id=pk, user=request.user)
 
     # NOTE: request.POST.get("todo_{pk}") is the input name of the todo modal
-    grocery.name = request.POST.get(f"grocery_{name}")
+    grocery.name = request.POST.get(f"grocery_{pk}")
     grocery.save()
+
+    #get Categories
+    categories = Category_choices.objects.all()
+    print(categories)
+    return {"categories": categories}
+    
     # return redirect("home")
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
