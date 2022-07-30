@@ -60,8 +60,8 @@ def home(request):
 
     groceries = Grocery.objects.filter(user = request.user, bought = False)
 
-    # paginating 10 items per page
-    paginator = Paginator(groceries, 10)
+    # paginating 6 items per page
+    paginator = Paginator(groceries, 6)
     
     # It's URL param for getting the current page number
     page_number = request.GET.get("page")
@@ -76,7 +76,6 @@ def home(request):
     return render (request, 'main.html', context)
 
 def update_grocery(request, pk):
-    item = Grocery.objects.get(id=pk)
     # NOTE: below get_object_or_404() returns a data if exists else status 404 not found
     grocery = get_object_or_404(Grocery, id=pk, user=request.user)
 
@@ -88,12 +87,8 @@ def update_grocery(request, pk):
     return HttpResponseRedirect(request.META.get('HTTP_REFERER') )
 
 def delete_grocery(request, pk):
-    """
-    Delete todo item
-    Args:
-        pk (Integer): Todo ID - Primary key
-    """    
-    grocery = get_object_or_404(TodoItem, id=pk, user=request.user)
+    #delete item    
+    grocery = get_object_or_404(Grocery, id=pk, user=request.user)
     grocery.delete()
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
