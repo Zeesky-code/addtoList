@@ -48,9 +48,7 @@
                             </form>
                         </div>
                     </div>
-                    <p class="err text-danger text-center hidden"><i class="fa fa-warning"></i> Oops, please enter a
-                        Grocery</p>
-                    <p class="no-items text-muted text-center hidden"><i class="fa fa-ban"></i></p>
+                    {% if groceries %}
                     <ul class="grocery-list">
                         {% for grocery in groceries %}
                         <li class="grocery">
@@ -127,6 +125,10 @@
                         </li>
                         {% endfor %}
                     </ul>
+                    {% else %}
+                        <p class=" text-danger text-center animated bounceIn"><i class="fa fa-warning"></i> Oops, please enter a Grocery</p>
+                    
+                    {% endif %}
                 </div>
             </div>
         </div>

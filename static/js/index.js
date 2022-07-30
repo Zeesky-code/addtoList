@@ -11,16 +11,7 @@ function setDefaultState() {
     syncState(baseState);
 }
 
-function generateID() {
-    var randLetter = String.fromCharCode(65 + Math.floor(Math.random() * 26));
-    return randLetter + Date.now();
-}
 
-function pushToState(title, status, id) {
-    var baseState = getState();
-    baseState[id] = { id: id, title: title, status: status };
-    syncState(baseState);
-}
 
 function setToDone(id) {
     var baseState = getState();
@@ -103,11 +94,6 @@ $(function () {
         });
     }
 
-    $(".add-btn").on("click", function () {
-        var itemVal = $(".form-control").val();
-        addItem(itemVal);
-        formControl.focus();
-    });
 
     $(".refresh").on("click", refresh);
 
@@ -119,33 +105,12 @@ $(function () {
         li.toggleClass("danger");
         li.toggleClass("animated flipInX");
 
-        setToDone(li.data().id);
-
         setTimeout(function () {
             li.removeClass("animated flipInX");
         }, 500);
     });
 
-    $(".grocery-list").on("click", ".close", function () {
-        var box = $(this)
-            .parent()
-            .parent();
-
-        if ($(".grocery-list li").length == 1) {
-            box.removeClass("animated flipInX").addClass("animated                bounceOutLeft");
-            setTimeout(function () {
-                box.remove();
-                $(".no-items").removeClass("hidden");
-                $(".refresh").addClass("hidden");
-            }, 500);
-        } else {
-            box.removeClass("animated flipInX").addClass("animated bounceOutLeft");
-            setTimeout(function () {
-                box.remove();
-            }, 500);
-        }
-
-    });
+    
 
     $(".form-control").keypress(function (e) {
         if (e.which == 13) {
