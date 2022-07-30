@@ -59,8 +59,7 @@
                                     <i class=" fa fa-solid fa-pen-to-square" data-toggle="modal"
                                         data-target="#exampleModalCenter"></i>
                                     <span class="close">
-                                        <i class="fa fa-times" aria-hidden="true"
-                                            href="{% url 'delete_grocery' grocery.id %}"></i>
+                                        <a href="{% url 'delete_grocery' grocery.id %}"><i class="fa fa-times" aria-hidden="true"></i></a>
                                     </span>
                                 </span>
                                 <label>
@@ -153,8 +152,8 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
-        <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-        <script src='http://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script>
         <script src="{% static 'js/index.js' %}"></script>
         <script src="https://unpkg.com/scrollreveal/dist/scrollreveal.min.js"></script>
     </body>

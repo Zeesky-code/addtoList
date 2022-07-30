@@ -33,12 +33,7 @@ function setToDone(id) {
     syncState(baseState);
 }
 
-function deleteTodo(id) {
-    console.log(id)
-    var baseState = getState();
-    delete baseState[id]
-    syncState(baseState)
-}
+
 
 function resetState() {
     localStorage.setItem("state", null);
@@ -150,7 +145,6 @@ $(function () {
             }, 500);
         }
 
-        deleteTodo(box.data().id)
     });
 
     $(".form-control").keypress(function (e) {
