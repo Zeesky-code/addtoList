@@ -14,7 +14,6 @@
     <title>Add to List</title>
     <meta name="viewport" content="height=device-height, initial-scale=1, user-scalable=no">
     <meta name="description" content="Add to List - List to track your shopping list !" />
-    <link rel="shortcut icon" href="todost.png">
     <link href="https://fonts.googleapis.com/css?family=Nunito:400,700" rel="stylesheet">
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
@@ -61,10 +60,12 @@
                                     </span>
                                 </span>
                                 <label>
-                                    <span class="checkbox-mask"></span>
-                                    <input type="checkbox">{{grocery.name}}
+                                    <a href="{% url 'buy_grocery' grocery.id %}"><span class="checkbox-mask"></span></a>
+                                    <input type="checkbox"></a>{{grocery.name}}
                                 </label>
-                                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                            </div>
+                            <!-- Edit Grocery Modal -->
+                            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
                                     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content">
@@ -119,14 +120,11 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <!-- Edit Grocery Modal -->
-
                         </li>
                         {% endfor %}
                     </ul>
                     {% else %}
-                        <p class=" text-danger text-center animated bounceIn"><i class="fa fa-warning"></i> Oops, please enter a Grocery</p>
+                        <p class="text-danger text-center animated bounceIn"><i class="fa fa-warning"></i> Oops, please enter a Grocery</p>
                     
                     {% endif %}
                 </div>

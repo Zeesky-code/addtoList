@@ -1,31 +1,3 @@
-var state = [];
-
-function setDefaultState() {
-    var id = generateID();
-    var baseState = {};
-    baseState[id] = {
-        status: "new",
-        id: id,
-        title: "This site uses 🍪to keep track of your tasks"
-    };
-    syncState(baseState);
-}
-
-
-
-function setToDone(id) {
-    var baseState = getState();
-    if (baseState[id].status === 'new') {
-        baseState[id].status = 'done'
-    } else {
-        baseState[id].status = 'new';
-    }
-
-    syncState(baseState);
-}
-
-
-
 function resetState() {
     localStorage.setItem("state", null);
 }
@@ -38,33 +10,7 @@ function getState() {
     return JSON.parse(localStorage.getItem("state"));
 }
 
-function addItem(text, status, id, noUpdate) {
-    var isError = $(".form-control").hasClass("hidden");
 
-    if (text === "") {
-        $(".err")
-            .removeClass("hidden")
-            .addClass("animated bounceIn");
-    } else {
-        $(".err").addClass("hidden");
-        $(".grocery-list").append(item);
-    }
-
-    $(".refresh").removeClass("hidden");
-
-    $(".no-items").addClass("hidden");
-
-    $(".form-control")
-        .val("")
-        .attr("placeholder", "✍️ Add Grocery...");
-    setTimeout(function () {
-        $(".grocery-list li").removeClass("animated flipInX");
-    }, 500);
-
-    if (!noUpdate) {
-        pushToState(text, "new", id);
-    }
-}
 
 function refresh() {
     $(".grocery-list li").each(function (i) {
@@ -84,40 +30,43 @@ function refresh() {
 }
 
 $(function () {
-    var err = $(".err"),
-        formControl = $(".form-control"),
-        isError = formControl.hasClass("hidden");
 
-    if (!isError) {
-        formControl.blur(function () {
-            err.addClass("hidden");
-        });
-    }
-
-
-    $(".refresh").on("click", refresh);
-
-    $(".grocery-list").on("click", 'input[type="checkbox"]', function () {
+    $(".grocery-list").on("click", '.checkbox-mask', function () {
         var li = $(this)
             .parent()
             .parent()
             .parent();
         li.toggleClass("danger");
-        li.toggleClass("animated flipInX");
+        li.toggleClass("animated flipInX bounceOutLeft");
+        li.attr('id', 'start');
 
         setTimeout(function () {
             li.removeClass("animated flipInX");
         }, 500);
     });
 
-    
+    $(".grocery-list").on("click", ".close", function () {
+        var box = $(this)
+            .parent()
+            .parent();
 
-    $(".form-control").keypress(function (e) {
-        if (e.which == 13) {
-            var itemVal = $(".form-control").val();
-            addItem(itemVal);
+        if ($(".grocery-list li").length == 1) {
+            box.removeClass("animated flipInX").addClass("animated bounceOutLeft");
+            setTimeout(function () {
+                box.remove();
+                $(".no-items").removeClass("hidden");
+                $(".refresh").addClass("hidden");
+            }, 500);
+        } else {
+            box.removeClass("animated flipInX").addClass("animated bounceOutLeft");
+            setTimeout(function () {
+                box.remove();
+            }, 500);
         }
+
     });
+
+
     $(".grocery-list").sortable();
     $(".grocery-list").disableSelection();
 });
@@ -159,17 +108,7 @@ var randomWord =
 todayContainer.innerHTML = randomWord + n;
 
 $(document).ready(function () {
-    var state = getState();
 
-    if (!state) {
-        setDefaultState();
-        state = getState();
-    }
-
-    Object.keys(state).forEach(function (todoKey) {
-        var todo = state[todoKey];
-        addItem(todo.title, todo.status, todo.id, true);
-    });
 
     var mins, secs, update;
 

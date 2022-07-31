@@ -93,12 +93,8 @@ def delete_grocery(request, pk):
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 def buy_grocery(request, pk):
-    """
-    Updating todo as completed item
-    Args:
-        pk (Integer): Todo ID - primary key
-    """    
-    grocery = get_object_or_404(TodoItem, id=pk, user=request.user)
+    #Updating todo as completed item
+    grocery = get_object_or_404(Grocery, id=pk, user=request.user)
     grocery.bought = True
     grocery.save()
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))

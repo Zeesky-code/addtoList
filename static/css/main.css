@@ -135,23 +135,7 @@
   padding-right: 25px;
 }
 
-.add-control .refresh {
-  position: absolute;
-  top: 8px;
-  right: 0;
-  font-size: 14px;
-  -webkit-transform: translateX(100%);
-  transform: translateX(100%);
-  margin-right: -10px;
-  cursor: pointer;
-  color: #9da1af;
-  -webkit-transition: color 0.15s linear;
-  transition: color 0.15s linear;
-}
 
-.add-control .refresh:hover {
-  color: #666;
-}
 
 .form-control,
 .form-control:focus,
@@ -264,10 +248,7 @@ button[disabled] {
 
 #start {
   background: #6200ff;
-  border: none;
-  border-radius: 20px;
-  padding-left: 35px;
-  padding-right: 35px;
+
 }
 
 #start:hover {
@@ -291,25 +272,6 @@ button[disabled] {
   border-radius: 20px;
   padding-left: 35px;
   padding-right: 35px;
-}
-
-#reset {
-
-  color: var(--c-red);
-}
-
-#reset:hover,
-#reset:focus {
-  background-color: var(--c-red);
-  color: #fff;
-  border-radius: 20px;
-  padding-left: 35px;
-  padding-right: 35px;
-}
-
-
-.pomodoro {
-  text-align: center;
 }
 
 p {
