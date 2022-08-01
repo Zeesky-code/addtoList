@@ -9,8 +9,11 @@
 .body {
   background: #020631;
   font: 14px 'Nunito', sans-serif;
-}
 
+}
+nav{
+  text-align: center;
+}
 .today {
   font-size: 22px;
 }
@@ -379,4 +382,10 @@ button{
   border-right: 0;
   border-bottom: 1px solid var(--c-gray);
   font-size: 2rem;
+}
+.disabled{
+  background: transparent;
+}
+.diabled:hover{
+  cursor: not-allowed;
 }
