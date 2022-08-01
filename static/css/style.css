@@ -305,7 +305,7 @@ p {
 
 /* About Section */
 #about .about {
-    flex-direction: column-reverse;
+    flex-direction: column;
     text-align: center;
     max-width: 1200px;
     margin: 0 auto;
