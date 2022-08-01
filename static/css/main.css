@@ -375,6 +375,7 @@ button{
 .edit-grocery-form label{
   color: var(--c-red);
   font-size: 1.5rem;
+  padding-left: 0;
 }
 .edit-grocery-form input, select{
   border-top: 0;
@@ -383,9 +384,11 @@ button{
   border-bottom: 1px solid var(--c-gray);
   font-size: 2rem;
 }
+
+
 .disabled{
   background: transparent;
 }
-.diabled:hover{
+.disabled:hover{
   cursor: not-allowed;
 }

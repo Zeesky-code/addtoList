@@ -57,16 +57,12 @@
                                     <i class=" fa fa-solid fa-pen-to-square" data-toggle="modal"
                                         data-target="#exampleModalCenter"></i>
                                     <span class="close">
-                                        <a href="{% url 'delete_grocery' grocery.id %}"><i class="fa fa-times" aria-hidden="true"></i></a>
+                                        <a href="{% url 'delete_grocery' grocery.id %}"><i class="fa fa-times"
+                                                aria-hidden="true"></i></a>
                                     </span>
                                 </span>
-                                <label>
-                                    <a href="{% url 'buy_grocery' grocery.id %}"><span class="checkbox-mask"></span></a>
-                                    <input type="checkbox"></a>{{grocery.name}}
-                                </label>
-                            </div>
-                            <!-- Edit Grocery Modal -->
-                            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                                <!-- Edit Grocery Modal -->
+                                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
                                     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content">
@@ -79,9 +75,9 @@
                                                 </button>
                                             </div>
                                             <form action="{% url 'update_grocery'  grocery.id %}" method="POST"
-                                                    class="edit-grocery-form">
-                                                    {% csrf_token %}
-                                            <div class="modal-body">
+                                                class="edit-grocery-form">
+                                                {% csrf_token %}
+                                                <div class="modal-body">
                                                     <div class="modal-body">
                                                         <ul>
                                                             <li><label>Name</label>
@@ -109,25 +105,32 @@
                                                             </li>
                                                         </ul>
                                                     </div>
-                                            
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                    data-dismiss="modal">Close</button>
-                                                <button type="submit" class="btn btn-primary"
-                                                    id="edit-grocery-submit">Save
-                                                    changes</button>
-                                            </div>
+
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-primary"
+                                                        id="edit-grocery-submit">Save
+                                                        changes</button>
+                                                </div>
                                             </form>
                                         </div>
                                     </div>
                                 </div>
+                                <label>
+                                    <a href="{% url 'buy_grocery' grocery.id %}"><span class="checkbox-mask"></span></a>
+                                    <input type="checkbox"></a>{{grocery.name}}
+                                </label>
+                            </div>
+
                         </li>
                         {% endfor %}
                     </ul>
                     {% else %}
-                        <p class="text-danger text-center animated bounceIn"><i class="fa fa-warning"></i> Oops, please enter a Grocery</p>
-                    
+                    <p class="text-danger text-center animated bounceIn"><i class="fa fa-warning"></i> Oops, please
+                        enter a Grocery</p>
+
                     {% endif %}
                 </div>
             </div>
@@ -136,27 +139,27 @@
         <nav aria-label="Page navigation example ">
             <ul class="pagination justify-content-center">
                 {% if page_obj.has_previous %}
-                    <li class="page-item previous-page">
-                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}" tabindex="-1">Previous</a>
-                    </li>
+                <li class=" text previous-page">
+                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}" tabindex="-1">Previous</a>
+                </li>
                 {% else %}
-                    <li class="page-item disabled previous-page">
-                        <a class="page-link" href="?page=0" tabindex="-1">Previous</a>
-                    </li>
+                <li class=" text disabled previous-page">
+                    <a class="page-link" href="?page=0" tabindex="-1">Previous</a>
+                </li>
                 {% endif %}
-    
-                <li class="page-item active current-page">
+
+                <li class=" active counter current-page">
                     <a class="page-link" href="?page={{ page_obj.number }}">{{ page_obj.number }}</a>
                 </li>
-    
+
                 {% if page_obj.has_next %}
-                    <li class="page-item next-page">
-                        <a class="page-link" href="?page={{ page_obj.next_page_number }}" tabindex="-1">Next</a>
-                    </li>
+                <li class=" next-page text">
+                    <a class="page-link" href="?page={{ page_obj.next_page_number }}" tabindex="-1">Next</a>
+                </li>
                 {% else %}
-                    <li class="page-item disabled next-page">
-                        <a class="page-link" href="?page=0" tabindex="-1">Next</a>
-                    </li>
+                <li class="disabled next-page text">
+                    <a class="page-link" href="?page=0" tabindex="-1">Next</a>
+                </li>
                 {% endif %}
             </ul>
         </nav>
