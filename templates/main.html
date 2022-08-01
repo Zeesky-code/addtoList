@@ -50,6 +50,7 @@
                     {% if groceries %}
                     <ul class="grocery-list">
                         {% for grocery in groceries %}
+
                         <li class="grocery">
                             <div class="checkbox">
                                 <span class="functions">
@@ -77,18 +78,18 @@
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
-                                            <div class="modal-body">
-                                                <form action="{% url 'update_grocery'  grocery.id %}" method="post"
+                                            <form action="{% url 'update_grocery'  grocery.id %}" method="POST"
                                                     class="edit-grocery-form">
                                                     {% csrf_token %}
+                                            <div class="modal-body">
                                                     <div class="modal-body">
                                                         <ul>
                                                             <li><label>Name</label>
-                                                                <input type="text" name="grocery_{{ grocery }}" id=""
+                                                                <input type="text" name="grocery_name" id=""
                                                                     value="{{ grocery.name }}" required size="40">
                                                             </li>
                                                             <li><label>Category</label>
-                                                                <select>
+                                                                <select name="grocery_category">
                                                                     {% for category in categories%}
                                                                     <option>{{category}}</option>
                                                                     {% endfor %}
@@ -96,27 +97,28 @@
                                                             </li>
                                                             <li>
                                                                 <label>Quantity</label>
-                                                                <input type="number">
+                                                                <input type="number" name="grocery_quantity" value="0">
                                                             </li>
                                                             <li>
                                                                 <label>Price</label>
-                                                                <input type="number">
+                                                                <input type="number" name="grocery_price" value="0">
                                                             </li>
                                                             <li>Notes:
-                                                                <input type="text" name="grocery_{{ grocery }}" id=""
-                                                                    value="{{ grocery.note }}" required size="40">
+                                                                <input type="text" name="grocery_note" id=""
+                                                                    value="{{ grocery.note }}" size="40">
                                                             </li>
                                                         </ul>
                                                     </div>
-                                                </form>
+                                            
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary"
                                                     data-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary"
+                                                <button type="submit" class="btn btn-primary"
                                                     id="edit-grocery-submit">Save
                                                     changes</button>
                                             </div>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>

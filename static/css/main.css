@@ -365,3 +365,18 @@ button{
   border: 0;
   margin-top: -10px;
 }
+.edit-grocery-form li{
+  display: flex;
+  flex-direction: column;
+}
+.edit-grocery-form label{
+  color: var(--c-red);
+  font-size: 1.5rem;
+}
+.edit-grocery-form input, select{
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+  border-bottom: 1px solid var(--c-gray);
+  font-size: 2rem;
+}
