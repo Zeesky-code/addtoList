@@ -82,14 +82,12 @@ def update_grocery(request, pk):
     # NOTE: request.POST.get("grocery_{pk}") is the input name of the grocery modal
     if request.method == "POST":
         grocery.name = request.POST.get(f"grocery_name")
-        print(grocery.name)
         grocery.category = request.POST.get(f"grocery_category")
         grocery.quantity = request.POST.get(f"grocery_quantity")
         grocery.price = request.POST.get(f"grocery_price")
         grocery.note =  request.POST.get(f"grocery_note")
 
         grocery.save()
-        print(grocery)
         # return to the home page
         return HttpResponseRedirect(request.META.get('HTTP_REFERER') )
 

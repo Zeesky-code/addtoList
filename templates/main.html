@@ -50,19 +50,18 @@
                     {% if groceries %}
                     <ul class="grocery-list">
                         {% for grocery in page_obj %}
-
                         <li class="grocery">
                             <div class="checkbox">
                                 <span class="functions">
                                     <i class=" fa fa-solid fa-pen-to-square" data-toggle="modal"
-                                        data-target="#exampleModalCenter"></i>
+                                        data-target="#exampleModalCenter {{grocery.id}}"></i>
                                     <span class="close">
                                         <a href="{% url 'delete_grocery' grocery.id %}"><i class="fa fa-times"
                                                 aria-hidden="true"></i></a>
                                     </span>
                                 </span>
                                 <!-- Edit Grocery Modal -->
-                                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                                <div class="modal fade" id="exampleModalCenter {{grocery.id}}" tabindex="-1" role="dialog"
                                     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content">
